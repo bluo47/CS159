@@ -1,6 +1,5 @@
 package nlp.parser;
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
