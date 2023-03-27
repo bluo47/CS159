@@ -6,4 +6,7 @@ public class CKYParse {
 
 	Entry[][] table = new Entry[10][20];
 	
+    public CKYParse() {
+        
+    }
 }
