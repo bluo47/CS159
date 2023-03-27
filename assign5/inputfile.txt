@@ -1,0 +1,2 @@
+a   TF  L1
+a   TFIDF   EUCLIDEAN

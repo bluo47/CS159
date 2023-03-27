@@ -1,6 +1,7 @@
-# import regex package
+# import packages
 import re
 import math
+import sys
 
 uniquewords = 0
 wordcount = 0
@@ -12,11 +13,13 @@ tfdict = {}
 tfidfdict = {}
 
 # input file 
-f = open("C:/Users/harry/pomona/cs159/assign5-starter/data/sentences", encoding='utf-8')
+f = open("assign5/data/sentences", encoding='utf-8')
+# f = open(sys.argv[2], encoding='utf-8')
 # stop list
-s = open("C:/Users/harry/pomona/cs159/assign5-starter/data/stoplist", encoding='utf-8')
+s = open("assign5/data/stoplist", encoding='utf-8')
+# s = open(sys.argv[1], encoding='utf-8')
 
-# ADD STOPLIST WORDS TO STOPLIST ARRAY VAR
+# while loop ADD STOPLIST WORDS TO STOPLIST ARRAY VAR
 while True:
     line = s.readline()
     # splits into word and ""
@@ -32,6 +35,7 @@ s.close()
 #PREPROCESS THINGS - BEFORE CONTEXT GATHERING
 # param line - given line string from f.readLine()
 def preprocess(line):
+    '''Given a line, returns an array of elts in the line that are purely based of alphabetical characters.'''
     global wordcount
     # split line into words by whitespace
     words = line.split(" ")
@@ -40,20 +44,14 @@ def preprocess(line):
     for word in words:
         lword = word.lower()
     
-    # we also need to lowercase the stoplist
-    # only "I" is capitalized - I just lowercased it in stoplist
-        # stoplist removal
-        # checks to make sure 
-        # exclusively letters
         if re.match(r"^[a-z]+$", word) and word not in stoplist:
             lowerWords.append(lword)
             wordcount += 1     
 
     return lowerWords
 
-# find context around given word
 def calcTF(word, lineArr, index):
-    
+    '''Calculates the term frequency of a given word'''
     # create context list
     if word not in tfdict:
         tfdict[word] = {}
@@ -92,10 +90,12 @@ def calcTF(word, lineArr, index):
 
 
 def calcIDF(N, w1):
+    '''Calculates the inverse document frequency.'''
     return math.log10(N / dfdict[w1])
     
 
 def calcTFIDF(N):
+    '''Calculates the TF-IDF.'''
     for outerkey in tfdict:
         for innerkey in tfdict[outerkey]:
             if outerkey in tfidfdict:
@@ -106,6 +106,7 @@ def calcTFIDF(N):
 
 
 def calcL1(w1dict, w2dict):
+    '''Calculates the result of the L1 similarity function given two words'''
     length = 0
     for key in w1dict:
         # case where key in both
@@ -122,6 +123,7 @@ def calcL1(w1dict, w2dict):
     return length
 
 def calcL2(w1dict, w2dict):
+    '''Calculates the result of the L2 (Euclidean) similarity function given two words'''
     length = 0
     for key in w1dict:
         # case where key in both
@@ -139,6 +141,7 @@ def calcL2(w1dict, w2dict):
     return length
 
 def calcCosine(w1dict, w2dict):
+    '''Calculates the result of the Cosine similarity function given two words'''
     numerator = 0
     adenom = 0
     bdenom = 0
@@ -157,6 +160,7 @@ def calcCosine(w1dict, w2dict):
     return length
 
 def normalize(wdict):
+    '''Conducts length normalization for a given word vector.'''
     length = 0
     normalized = {}
     for key in wdict:
@@ -191,9 +195,6 @@ while True:
 # Print num unique words, num word occurrences, and num sentences/lines
 print("The number of unique words is: {}\nThe number of word occurrences: {}\nThe number of lines is: {}".format(len(tfdict),wordcount,linecount))
 print()
-
-
-
 
 thechosenword = "dog"
 weightmode = "TF"
