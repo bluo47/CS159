@@ -13,10 +13,10 @@ tfdict = {}
 tfidfdict = {}
 
 # input file 
-f = open("assign5/data/sentences", encoding='utf-8')
+f = open("data/sentences", encoding='utf-8')
 # f = open(sys.argv[2], encoding='utf-8')
 # stop list
-s = open("assign5/data/stoplist", encoding='utf-8')
+s = open("data/stoplist", encoding='utf-8')
 # s = open(sys.argv[1], encoding='utf-8')
 
 # while loop ADD STOPLIST WORDS TO STOPLIST ARRAY VAR
@@ -197,8 +197,8 @@ print("The number of unique words is: {}\nThe number of word occurrences: {}\nTh
 print()
 
 thechosenword = "dog"
-weightmode = "TF"
-distmode = "EUCLIDEAN"
+weightmode = "TFIDF"
+distmode = "COSINE"
 
 distances = []
 
