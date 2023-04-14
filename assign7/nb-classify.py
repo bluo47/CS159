@@ -10,14 +10,11 @@ td = open(training_data, encoding='utf-8')
 
 while True:
     line = td.readline()
-    # splits into word and ""
+    # split by whitespace
     splitLine = line.split()
 
     if not line:
         break
-    
-    # take first elt of splitLine (the word we want)
-    # print(splitLine)
 
     # retrieve the label "positive" or "negative" from the line
     label = splitLine[0]
@@ -41,8 +38,6 @@ while True:
                 neg[word] = 1
                 vocabcount += 1
             neg["<COUNT>"] += 1
-
-
 
 sen = {"<COUNT>" : 0}
 
@@ -77,18 +72,12 @@ def inputSentence(sentence):
 # inputSentence("i loved it")
 # inputSentence("i thought i hated it but loved it")
 
-
 # for word in sentence:
 #     if word in sen:
 #         sen[word] += 1
 #     else:
 #         sen[word] = 1
 #     sen["<COUNT>"] += 1
-
-
-    
-
-
 
 # print("\n")
 # # QUESTION 2
@@ -103,20 +92,20 @@ def inputSentence(sentence):
 #         print("p({} | negative) = {}".format(word,neg[word]/neg["<COUNT>"]))
 
 # QUESTION 3
-bestword = {}
-for word in pos:
-    if word in neg and not word == "<COUNT>":
-        bestword[word] = pos[word] / neg[word]
+# bestword = {}
+# for word in pos:
+#     if word in neg and not word == "<COUNT>":
+#         bestword[word] = pos[word] / neg[word]
 
-bestwordp = sorted(bestword.items(), key=lambda x:x[1], reverse=True)
-bestwordn = sorted(bestword.items(), key=lambda x:x[1])
+# bestwordp = sorted(bestword.items(), key=lambda x:x[1], reverse=True)
+# bestwordn = sorted(bestword.items(), key=lambda x:x[1])
 
-for i in range(10):
-    print("word: {}\t\tpos/neg ratio: {}".format(bestwordp[i][0], bestwordp[i][1]))
-print()
+# for i in range(10):
+#     print("word: {}\t\tpos/neg ratio: {}".format(bestwordp[i][0], bestwordp[i][1]))
+# print()
 
-for i in range(10):
-    print("word: {}\t\tpos/neg ratio: {}".format(bestwordn[i][0], bestwordn[i][1]))
+# for i in range(10):
+#     print("word: {}\t\tpos/neg ratio: {}".format(bestwordn[i][0], bestwordn[i][1]))
 
 # QUESTION 4
 # inputSentence("i hate this movie so much the movie should kill itself")
