@@ -13,7 +13,7 @@ import java.util.*;
  *
  */
 public class NameClassification {
-	private static final String DATA_DIR = ../data/";
+	private static final String DATA_DIR = "../data/";
 	private static final String TRAINING_DATA = DATA_DIR + "names.train";
 	private static final String DEV_DATA = DATA_DIR + "names.dev";
 	private static final String TEST_DATA = DATA_DIR + "names.test";
