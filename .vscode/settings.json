@@ -1,0 +1,6 @@
+{
+    "java.project.referencedLibraries": [
+        "lib/**/*.jar",
+        "names_lab/code/stanford-classifier.jar"
+    ]
+}

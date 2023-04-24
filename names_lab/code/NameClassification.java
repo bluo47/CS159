@@ -143,7 +143,7 @@ public class NameClassification {
 	
 	public static void main(String[] args){
 		ArrayList<Datum> trainingData = examplesToData(readExamples(TRAINING_DATA));
-		ArrayList<NameExample> devExamples = readExamples(DEV_DATA);
+		ArrayList<NameExample> devExamples = readExamples(TEST_DATA);
 		ArrayList<Datum> devData = examplesToData(devExamples);
 		
 		// DON'T USE THIS UNTIL I TELL YOU TO
